@@ -1,0 +1,23 @@
+{
+  "name": "demoapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wlaeri/demoApp.git"
+  },
+  "author": "Will Laeri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wlaeri/demoApp/issues"
+  },
+  "homepage": "https://github.com/wlaeri/demoApp#readme",
+  "dependencies": {
+    "ws": "^5.2.1"
+  }
+}

@@ -1,0 +1,52 @@
+<html>
+	<header>
+		<title>Crypto App</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript">
+
+		    //create a socket instance
+			var socket = new WebSocket('ws://localhost:3000');
+
+			//open the socket
+			socket.onopen = function(event) {
+				console.log('Establishing socket connection.')
+				
+				//listen for socket messages
+				socket.onmessage = function(event) {
+					console.log('Client received a socket message: ',event.data);
+					//bind the message contents to the results DOM object using jQuery
+					//this dynamically renders the result
+					$('#results').html(event.data)
+				};
+				
+			};
+
+			//wait for the DOM to load
+			window.onload = function () {
+				//find form and crypto pair in the DOM
+			    var cryptoForm = document.getElementById("cryptoForm");
+				var cryptoPair = document.getElementById("pair")
+
+				//add an event listener on the form submission
+				cryptoForm.addEventListener("submit", function (event) {
+
+					//prevent the default form action
+				    event.preventDefault();
+
+				    //send the crypto pair string via socket message
+				    socket.send(cryptoPair.value)
+				});
+
+			};
+
+		</script>
+	</header>
+	<body>
+		<form id="cryptoForm">
+		  <label for="pair">Input a crypto pair:</label>
+		  <input id="pair" pair="pair" value="BTCUSD">
+		  <input type="submit" value="Submit">
+		</form>
+		<div id="results"/>
+	</body>
+</html>
